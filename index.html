@@ -49,13 +49,13 @@
 
         //在main中插入3个div
         index = 0
-        while(index<keys['length']){   //length取值0,1,2
+        while(index< keys['length']){   //length取值0,1,2
             div1 = document.createElement('div')  //新建div标签
             bigBox.appendChild(div1)  //将新建的div放入id为bigBox的标签中
             row = keys[index]  //row取值第一个数组，第二个数组，第三个数组
             //在div中插入多个kbd
             index2 = 0
-            while(index2<row['length]']){ 
+            while(index2< row['length]']){ 
                 kbd1 = document.createElement('kbd')
                 kbd1.textContent = row[index2] //给kbd添加内容
                 div1.appendChild(kbd1)
