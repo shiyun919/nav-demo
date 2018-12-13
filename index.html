@@ -60,6 +60,9 @@
             while(index2< row['length']){ 
                 kbd1 = document.createElement('kbd')
                 kbd1.textContent = row[index2] //给kbd添加内容
+                button1 = document.createElement('button')
+                button1.textContent = '编辑'
+                kbd1.appendChild(button1)
                 div1.appendChild(kbd1)
                 index2 = index2+1
             } 
@@ -67,7 +70,10 @@
             index = index+1
         }
         document.onkeypress = function(keyboard){
-            console.log('我发现你输入了一个键')
+            key = keyboard['key']
+            website = hash[key]
+           // location.href = 'http://'+website
+           window.open('http://'+website, '_blank')
         }  //监听键盘事件的语法
     </script>
 </body>
