@@ -12,12 +12,15 @@ kbd {
     height: 4em;
     text-transform: uppercase;
 }
+main {
+    text-align: center;
+}
 #bigBox {
-    margin: 0 auto;
+    display: inline-block;
 }
 #bigBox > div:nth-child(2) {
-    margin-left:2em;
+    margin-left:1em;
 }
 #bigBox > div:last-child {
-    margin-left: 4em;
+    margin-left: 2em;
 }
