@@ -41,40 +41,58 @@
             k:undefined,
             l:undefined,
             z:'zhihu.com',
-            x:undefined,
-            c:undefined,
-            v:undefined,
-            b:undefined,
-            n:undefined,
             m:'wwww.mcdonalds.com.cn',
             
         }
         //去除localStorage中的zzz对应的hash
-        hashInLocalStorage = JSON.parse(localStorage.getItem('zzz') || 'null')
+        var hashInLocalStorage = JSON.parse(localStorage.getItem('zzz') || 'null')
         if(hashInLocalStorage){
             hash = hashInLocalStorage
         }
 
         //在main中插入3个div
-        index = 0
+        var index = 0
         while(index< keys['length']){   //length取值0,1,2
-            div = document.createElement('div')  //新建div标签
+            var div = document.createElement('div')  //新建div标签
             div.className = 'row'
             bigBox.appendChild(div)  //将新建的div放入id为bigBox的标签中
-            row = keys[index]  //row取值第一个数组，第二个数组，第三个数组
-            index2 = 0
+            var row = keys[index]  //row取值第一个数组，第二个数组，第三个数组
+            var index2 = 0
             while(index2< row['length']){ 
-                kbd = document.createElement('kbd')
-                kbd.textContent = row[index2] //给kbd添加内容
+                var kbd = document.createElement('kbd')
+                var span = document.createElement('span')
+                span.className = 'text'
+                span.textContent = row[index2] //给span添加内容
                 kbd.className = 'key'
-                button = document.createElement('button')
+                var button = document.createElement('button')
                 button.textContent = '编辑'
                 button.id = row[index2]
-                button.onclick = function(edit){
-                    key = edit['target']['id']
-                    x = prompt('输入一个网址')
-                    hash[key] = x
+                var img = document.createElement('img')
+                if(hash[row[index2]]){
+                    img.src = 'http://' + hash[row[index2]] + '/favicon.ico'
+                }else{
+                    img.src = 'https://i.loli.net/2018/12/17/5c17606d76b49.png'
                 }
+                //监听加载失败的icon事件
+                img.onerror = function(image){
+                    image.target.src = 'https://i.loli.net/2018/12/17/5c17606d76b49.png'
+                }
+                //监听点击按钮事件
+                button.onclick = function(edit){
+                    //edit['target']  就是用户点击的元素
+                    var button2 = edit['target']
+                    var img2 = button2.previousSibling  //获取button哥哥的值
+                    var key = button2['id']
+                    var x = prompt('输入一个网址')
+                    hash[key] = x //hash变更
+                    img2.src = 'http://' + x + '/favicon.ico'
+                    img2.onerror = function(picture){
+                        picture.target.src = 'https://i.loli.net/2018/12/17/5c17606d76b49.png'
+                    }
+                    localStorage.setItem('zzz', JSON.stringify(hash))
+                }
+                kbd.appendChild(span)
+                kbd.appendChild(img)
                 kbd.appendChild(button)
                 div.appendChild(kbd)
                 index2 = index2+1
@@ -84,8 +102,8 @@
         }
         //监听键盘事件的语法
         document.onkeypress = function(keyboard){
-            key = keyboard['key']
-            website = hash[key]
+            var key = keyboard['key']
+            var website = hash[key]
            // location.href = 'http://'+website
            window.open('http://'+website, '_blank')
         }  

@@ -5,10 +5,22 @@
 a {
     text-decoration: none;
 }
+body {
+    background: url(../image/bg-01.jpg) center center no-repeat;
+    background-size：cover；
+}
 
 main {
     text-align: center;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.floor {
+    background: rgba(255,255,255,0.2);
+    padding: 10px;
+    border-radius: 10px;
 }
 #bigBox {
     display: inline-block;
@@ -42,9 +54,19 @@ kbd:hover > button {
     background: linear-gradient(to bottom,#292929 0%,#111111 100%);
     border: 1px solid #373737;
     border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-block;
     box-shadow: 0px 0px 0px 1px #1a1b1c, 0px 0px 0px 2px #1f2020, 0px 3px 0px 2px #080808;
     margin: 10px 10px;
+}
+.key img {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left: 4px;
+    bottom: 2px;
+}
+.key .text {
+    position: absolute;
+    left: 4px;
+    top: 2px;
 }
