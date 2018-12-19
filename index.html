@@ -51,12 +51,15 @@
             return JSON.parse(localStorage.getItem(name) || 'null')
         }
         function tag(tagName, attributes){
+            return document.createElement(tagName)
+        }
+        /*function tag(tagName, attributes){
             var element = document.createElement(tagName)
             for(var key in attributes){    //key为className, id, textContent
                 element[key] = attributes[key]
             }
             return element
-        }
+        }*/
 
 
         //去除localStorage中的zzz对应的hash
@@ -71,16 +74,20 @@
         //在main中插入3个div
         var index = 0
         while(index< keys['length']){   //length取值0,1,2
-            var div = tag('div', {className:'row'})  //新建className为row的div标签
+            var div = tag('div')  //新建div标签
+            div.className = 'row'
             bigBox.appendChild(div)  //将新建的div放入id为bigBox的标签中
             var row = keys[index]  //row取值第一个数组，第二个数组，第三个数组
             var index2 = 0
             while(index2< row['length']){ 
-                var kbd = tag('kbd', {className:'key'})
-                var span = tag('span', {className:'text'})
+                var kbd = tag('kbd')
+                var span = tag('span')
+                span.className = 'text'
                 span.textContent = row[index2] //给span添加内容
-                var button = tag('button', {id:'row[index2]'})
+                kbd.className = 'key'
+                var button = tag('button')
                 button.textContent = '编辑'
+                button.id = row[index2]
                 var img = tag('img')
                 if(hash[row[index2]]){
                     img.src = 'http://' + hash[row[index2]] + '/favicon.ico'
